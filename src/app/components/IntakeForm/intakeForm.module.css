@@ -1,0 +1,8 @@
+.submitButton {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .submitButton {
+    width: auto;
+  }
+}

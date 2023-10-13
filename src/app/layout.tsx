@@ -2,6 +2,7 @@ import React from "react";
 import GoogleAnalytics from "@/lib/ga4/googleAnalytics";
 import { AntdStyleProvider } from "./components/antdStyleProvider";
 import { Metadata } from "next";
+import "@/css/globals.css";
 import styles from "./layout.module.css";
 
 export const metadata: Metadata = {

@@ -6,7 +6,7 @@ import { useCallback } from "react";
 
 const { Text } = Typography;
 
-export default function OptIn() {
+export default function OptIn({ disabled }: { disabled: boolean }) {
   const validator = useCallback(async (_: RuleObject, agreed: any) => {
     if (
       agreed === undefined ||
@@ -26,7 +26,7 @@ export default function OptIn() {
       valuePropName="checked"
     >
       <Space>
-        <Checkbox />
+        <Checkbox disabled={disabled} />
         <Text>
           I agree to the{" "}
           <Link target="_blank" href="/tos">

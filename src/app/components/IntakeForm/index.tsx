@@ -1,54 +1,31 @@
 "use client";
 
-import { Button, Form, Space } from "antd";
-import overrideClasses from "@/css/overrides.module.css";
-import Email from "./fields/Email";
-import OptIn from "./fields/OptIn";
-import { useForm } from "antd/es/form/Form";
-import HomeAddress from "./fields/HomeAddress";
-import useDebounce from "@/hooks/useDebounce";
-import { useMemo, useState } from "react";
-import useAutocompleteAddress from "@/hooks/useAutocompleteAddress";
+import { Card } from "antd";
+import { FormEntry } from "@/helpers/formatFormEntry";
+import useSubmitForm from "@/hooks/useSubmitForm";
+import Show from "./../show";
+import Confirm from "./confirm";
+import Intake from "./intake";
 
 const IntakeForm = () => {
-  const [intakeForm] = useForm();
+  const { sending, error, done, submitForm } = useSubmitForm();
 
-  const { options, sending, error, setPartialAddress } =
-    useAutocompleteAddress();
-
-  console.log(options, sending, error);
+  const submitted = sending || error || done;
+  const handleSubmit = (values: any) => {
+    submitForm({
+      database_id: process.env.NEXT_PUBLIC_INTAKE_DB,
+      data: values as FormEntry,
+    });
+  };
   return (
-    <Form
-      form={intakeForm}
-      layout="vertical"
-      style={{ width: "100%", textAlign: "left" }}
-      name="contact-info"
-      scrollToFirstError={true}
-      onFieldsChange={(changedFields) => {
-        const homeAddressField = changedFields.find(({ name }) =>
-          name.includes("home-address")
-        );
-        if (homeAddressField === undefined) {
-          return;
-        }
-        setPartialAddress(homeAddressField.value);
-      }}
-    >
-      <Space
-        direction="vertical"
-        size="small"
-        className={overrideClasses["ant-space__full-width"]}
+    <Card>
+      <Show
+        when={submitted}
+        otherwise={<Intake onFinish={handleSubmit} sending={sending} />}
       >
-        <HomeAddress size="large" />
-        <Email size="large" />
-        <OptIn />
-        <Form.Item>
-          <Button type="primary" size="large" htmlType="submit">
-            Analyze my home
-          </Button>
-        </Form.Item>
-      </Space>
-    </Form>
+        <Confirm sending={sending} error={error} />
+      </Show>
+    </Card>
   );
 };
 export default IntakeForm;
