@@ -1,4 +1,4 @@
-import { resolveEnvVar } from "@/lib/constants";
+import resolveEnvVar from "@/helpers/resolveEnvVar";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
