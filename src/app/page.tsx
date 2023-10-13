@@ -17,6 +17,8 @@ const pageOptions = [
   NEXT_PUBLIC_TEST_C,
 ];
 
+export const dynamic = "force-dynamic";
+
 const randomPageVersion = (options: string[]) => {
   const id = randomArrayItem(options);
   if (id === NEXT_PUBLIC_TEST_A) {
