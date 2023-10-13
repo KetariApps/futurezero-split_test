@@ -1,0 +1,22 @@
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body,
+#root {
+  display: flex;
+  min-height: 100%;
+  margin: 0;
+  width: 100% !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: unset;
+}

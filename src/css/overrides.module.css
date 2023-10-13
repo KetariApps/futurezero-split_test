@@ -1,0 +1,4 @@
+.ant-space__full-width,
+.ant-space__full-width > div {
+  width: 100% !important;
+}
