@@ -32,3 +32,6 @@ jobs:
             NEXT_PUBLIC_TEST_C=${{ secrets.NEXT_PUBLIC_TEST_C }}
             NEXT_PUBLIC_TOS=${{ secrets.NEXT_PUBLIC_TOS }}
             NEXT_PUBLIC_GOOGLE_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_ID }}
+            NEXT_PUBLIC_INTAKE_DB=${{ secrets.NEXT_PUBLIC_INTAKE_DB }}
+            NOTION_SECRET=${{ secrets.NOTION_SECRET }}
+            GEO_API_KEY=${{ secrets.GEO_API_KEY }}
