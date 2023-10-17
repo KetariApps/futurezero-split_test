@@ -8,15 +8,13 @@ export async function POST(req: NextRequest) {
     var requestOptions = {
       method: "GET",
     };
+    const endpoint = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
+      partialAddress
+    )}&format=json&limit=5&apiKey=${GEO_API_KEY}`;
 
-    console.log(GEO_API_KEY);
+    console.log(endpoint);
 
-    const response = await fetch(
-      `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
-        partialAddress
-      )}&format=json&limit=5&apiKey=${GEO_API_KEY}`,
-      requestOptions
-    );
+    const response = await fetch(endpoint, requestOptions);
     if (response.ok) {
       const json = await response.json();
       return NextResponse.json(json, { status: 200 });
