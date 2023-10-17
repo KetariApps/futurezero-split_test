@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       partialAddress
     )}&format=json&limit=5&apiKey=${GEO_API_KEY}`;
 
-    console.log(endpoint);
+    console.log(`[${new Date().toISOString()}]: ${endpoint}`);
 
     const response = await fetch(endpoint, requestOptions);
     if (response.ok) {
