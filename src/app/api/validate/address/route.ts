@@ -9,6 +9,8 @@ export async function POST(req: NextRequest) {
       method: "GET",
     };
 
+    console.log(GEO_API_KEY);
+
     const response = await fetch(
       `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
         partialAddress
