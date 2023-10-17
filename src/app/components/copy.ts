@@ -10,17 +10,27 @@ export const copy = {
       "How much could you reduce your home's C02 emissions with a clean energy retrofit?",
   },
   howItWorks:
-    "Simply input your home address and your email address to get sent a free home health and valuation estimate.",
+    "Simply input your home address and your email address to receive a free estimate.",
   aboutUs:
     "FutureZero is a real estate technology startup that helps homeowners increase the health and value of their homes through net zero energy upgrades.",
   components: {
     intakeForm: {
       fields: {
-        address: {},
-        email: {},
-        optIn: {},
+        address: {
+          placeholder: "Enter the address of your home",
+          errorMessage: "Please enter the address of your home",
+        },
+        email: {
+          placeholder: "your@email.com",
+          errorMessage: "Enter a valid email address.",
+        },
+        optIn: "I want to learn how to complete a deep energy retrofit.",
       },
-      submitButton: {},
+      alertMessage: {
+        main: "By submitting this form, you agree to the",
+        link: "terms",
+      },
+      submitButton: "Analyze my home",
     },
   },
 };

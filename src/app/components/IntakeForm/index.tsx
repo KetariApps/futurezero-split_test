@@ -5,7 +5,7 @@ import { FormEntry } from "@/helpers/formatFormEntry";
 import useSubmitForm from "@/hooks/useSubmitForm";
 import Show from "./../show";
 import Confirm from "./confirm";
-import Intake from "./intake";
+import PrimaryForm from "./PrimaryForm";
 
 const IntakeForm = () => {
   const { sending, error, done, submitForm } = useSubmitForm();
@@ -21,7 +21,7 @@ const IntakeForm = () => {
     <Card>
       <Show
         when={submitted}
-        otherwise={<Intake onFinish={handleSubmit} sending={sending} />}
+        otherwise={<PrimaryForm onFinish={handleSubmit} sending={sending} />}
       >
         <Confirm sending={sending} error={error} />
       </Show>

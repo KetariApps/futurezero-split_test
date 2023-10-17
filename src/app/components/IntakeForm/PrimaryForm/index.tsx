@@ -13,7 +13,7 @@ import Link from "next/link";
 import { copy } from "../../copy";
 
 const { Text, Title } = Typography;
-const Intake = ({
+const PrimaryForm = ({
   sending,
   onFinish,
 }: {
@@ -24,12 +24,18 @@ const Intake = ({
 
   const { options, setPartialAddress } = useAutocompleteAddress(300);
   const { howItWorks } = copy;
+  const { submitButton, alertMessage } = copy.components.intakeForm;
   const autocompleteOptions = options
     ? options.map(({ formatted }) => ({ value: formatted }))
     : [];
   return (
-    <Space direction="vertical">
-      <Title level={4}>{howItWorks}</Title>
+    <Space
+      direction="vertical"
+      className={overrideClasses["ant-space__full-width"]}
+    >
+      <Title level={4} style={{ width: "100%" }}>
+        {howItWorks}
+      </Title>
       <Form
         form={intakeForm}
         layout="vertical"
@@ -52,19 +58,26 @@ const Intake = ({
           size="small"
           className={overrideClasses["ant-space__full-width"]}
         >
-          <HomeAddress
-            disabled={sending}
-            size="large"
-            options={autocompleteOptions}
-          />
-          <Email disabled={sending} size="large" />
-          <OptIn disabled={sending} />
+          <Space
+            direction="vertical"
+            className={overrideClasses["ant-space__full-width"]}
+            size={0}
+          >
+            <HomeAddress
+              disabled={sending}
+              size="large"
+              options={autocompleteOptions}
+            />
+            <Email disabled={sending} size="large" />
+            <OptIn disabled={sending} />
+          </Space>
           <Alert
+            style={{ marginBottom: 16 }}
             message={
               <Text>
-                By submitting this form, you agree to the
+                {alertMessage.main}
                 <Link target="_blank" href="/tos" style={{ marginLeft: 4 }}>
-                  terms
+                  {alertMessage.link}
                   <LinkOutlined style={{ marginLeft: 4 }} />
                 </Link>
               </Text>
@@ -79,7 +92,7 @@ const Intake = ({
               size="large"
               htmlType="submit"
             >
-              Analyze my home
+              {submitButton}
             </Button>
           </Form.Item>
         </Space>
@@ -87,4 +100,4 @@ const Intake = ({
     </Space>
   );
 };
-export default Intake;
+export default PrimaryForm;

@@ -1,3 +1,4 @@
+import { copy } from "@/app/components/copy";
 import validateEmail from "@/helpers/validateEmail";
 import { Form, Input, InputProps } from "antd";
 import { RuleObject } from "antd/es/form";
@@ -10,9 +11,10 @@ export default function Email({
   size: InputProps["size"];
   disabled: boolean;
 }) {
+  const { placeholder, errorMessage } = copy.components.intakeForm.fields.email;
   const validator = useCallback(async (_: RuleObject, email: string) => {
     if (validateEmail(email) === false) {
-      throw new Error("Enter a valid email address.");
+      throw new Error(errorMessage);
     }
   }, []);
   return (
@@ -27,7 +29,7 @@ export default function Email({
         disabled={disabled}
         size={size}
         type="email"
-        placeholder="your@email.com"
+        placeholder={placeholder}
       />
     </Form.Item>
   );
