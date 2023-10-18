@@ -1,29 +1,48 @@
 "use client";
 
 import { Card } from "antd";
-import { FormEntry } from "@/helpers/formatFormEntry";
-import useSubmitForm from "@/hooks/useSubmitForm";
 import Show from "./../show";
-import Confirm from "./confirm";
+import Feedback from "./Feedback";
 import PrimaryForm from "./PrimaryForm";
+import { useMemo, useState } from "react";
+import useSubmitForm from "@/hooks/useSubmitForm";
+import { FormEntry } from "@/helpers/formatFormEntry";
+// import PreflightForm from "./PreflightForm";
 
 const IntakeForm = () => {
   const { sending, error, done, submitForm } = useSubmitForm();
 
-  const submitted = sending || error || done;
   const handleSubmit = (values: any) => {
     submitForm({
       database_id: process.env.NEXT_PUBLIC_INTAKE_DB,
       data: values as FormEntry,
     });
   };
+  const [verifiedTarget, setVerifiedTarget] = useState<boolean>();
+  const submitting = useMemo(() => {
+    return done || error || sending;
+  }, [done, error, sending]);
+
   return (
     <Card>
       <Show
-        when={submitted}
-        otherwise={<PrimaryForm onFinish={handleSubmit} sending={sending} />}
+        when={submitting || verifiedTarget === false}
+        otherwise={
+          // <Show
+          //   when={verifiedTarget === true}
+          //   otherwise={
+          //     <PreflightForm
+          //       onVerifiedTarget={setVerifiedTarget}
+          //       onError={() => setError(true)}
+          //       onSending={() => setSending(true)}
+          //     />
+          //   }
+          // >
+          <PrimaryForm handleSubmit={handleSubmit} />
+          // </Show>
+        }
       >
-        <Confirm sending={sending} error={error} />
+        <Feedback sending={sending} error={error} done={done} />
       </Show>
     </Card>
   );

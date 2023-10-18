@@ -7,6 +7,7 @@ import { DynamicContent } from "./components/DynamicContent";
 import { copy } from "./components/copy";
 import { Footer } from "./components/Footer";
 import Image from "next/image";
+import PreflightForm from "./components/IntakeForm/PreflightForm";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { testA, testB } = copy;

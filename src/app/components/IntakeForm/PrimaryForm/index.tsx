@@ -11,18 +11,17 @@ import useAutocompleteAddress from "@/hooks/useAutocompleteAddress";
 import styles from "../intakeForm.module.css";
 import Link from "next/link";
 import { copy } from "../../copy";
+import { FormEntry } from "@/helpers/formatFormEntry";
 
 const { Text, Title } = Typography;
 const PrimaryForm = ({
-  sending,
-  onFinish,
+  handleSubmit,
 }: {
-  sending: boolean;
-  onFinish: (values: any) => void;
+  handleSubmit: (values: FormEntry) => void;
 }) => {
   const [intakeForm] = useForm();
-
   const { options, setPartialAddress } = useAutocompleteAddress(300);
+
   const { howItWorks } = copy;
   const { submitButton, alertMessage } = copy.components.intakeForm;
   const autocompleteOptions = options
@@ -51,7 +50,7 @@ const PrimaryForm = ({
           }
           setPartialAddress(homeAddressField.value);
         }}
-        onFinish={onFinish}
+        onFinish={handleSubmit}
       >
         <Space
           direction="vertical"
@@ -63,13 +62,9 @@ const PrimaryForm = ({
             className={overrideClasses["ant-space__full-width"]}
             size={0}
           >
-            <HomeAddress
-              disabled={sending}
-              size="large"
-              options={autocompleteOptions}
-            />
-            <Email disabled={sending} size="large" />
-            <OptIn disabled={sending} />
+            <HomeAddress size="large" options={autocompleteOptions} />
+            <Email size="large" />
+            <OptIn />
           </Space>
           <Alert
             style={{ marginBottom: 16 }}
@@ -87,7 +82,6 @@ const PrimaryForm = ({
           <Form.Item>
             <Button
               className={styles.submitButton}
-              loading={sending}
               type="primary"
               size="large"
               htmlType="submit"

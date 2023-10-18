@@ -1,4 +1,5 @@
 "use client";
+
 import {
   LoadingOutlined,
   CheckCircleOutlined,
@@ -8,11 +9,12 @@ import { Result, Space, Typography } from "antd";
 import Show from "../show";
 
 const { Text } = Typography;
-export interface ConfirmProps {
+export interface FeedbackProps {
   sending: boolean;
   error: boolean;
+  done: boolean;
 }
-const Confirm = ({ sending, error }: ConfirmProps) => {
+const Feedback = ({ sending, error, done }: FeedbackProps) => {
   const icon = sending ? (
     <LoadingOutlined />
   ) : error ? (
@@ -31,9 +33,11 @@ const Confirm = ({ sending, error }: ConfirmProps) => {
             <Show
               when={error}
               otherwise={
-                <Text>
-                  Our team will crunch the numbers and get back to you.
-                </Text>
+                <Show when={done}>
+                  <Text>
+                    Our team will crunch the numbers and get back to you.
+                  </Text>
+                </Show>
               }
             >
               <Text>
@@ -46,4 +50,4 @@ const Confirm = ({ sending, error }: ConfirmProps) => {
     />
   );
 };
-export default Confirm;
+export default Feedback;

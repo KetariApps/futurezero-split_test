@@ -9,7 +9,7 @@ export default function Email({
   disabled,
 }: {
   size: InputProps["size"];
-  disabled: boolean;
+  disabled?: boolean;
 }) {
   const { placeholder, errorMessage } = copy.components.intakeForm.fields.email;
   const validator = useCallback(async (_: RuleObject, email: string) => {

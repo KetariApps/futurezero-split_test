@@ -8,7 +8,7 @@ export default function HomeAddress({
 }: {
   size: InputProps["size"];
   options: { value: string }[];
-  disabled: boolean;
+  disabled?: boolean;
 }) {
   const { placeholder, errorMessage } =
     copy.components.intakeForm.fields.address;

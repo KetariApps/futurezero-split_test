@@ -21,7 +21,7 @@ export default function formatFormEntry(data: FormEntry) {
     },
     email: { email: data.email },
     "opt-in": {
-      checkbox: data["opt-in"],
+      checkbox: data["opt-in"] || false,
     },
     "submitted-on": {
       date: {
