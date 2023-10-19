@@ -5,7 +5,7 @@ import { LinkOutlined } from "@ant-design/icons";
 import overrideClasses from "@/css/overrides.module.css";
 import Email from "./fields/Email";
 import OptIn from "./fields/OptIn";
-import { useForm } from "antd/es/form/Form";
+import { FormInstance } from "antd/es/form/Form";
 import HomeAddress from "./fields/HomeAddress";
 import useAutocompleteAddress from "@/hooks/useAutocompleteAddress";
 import styles from "../intakeForm.module.css";
@@ -16,10 +16,11 @@ import { FormEntry } from "@/helpers/formatFormEntry";
 const { Text, Title } = Typography;
 const PrimaryForm = ({
   handleSubmit,
+  form,
 }: {
   handleSubmit: (values: FormEntry) => void;
+  form: FormInstance;
 }) => {
-  const [intakeForm] = useForm();
   const { options, setPartialAddress } = useAutocompleteAddress(300);
 
   const { howItWorks } = copy;
@@ -36,7 +37,7 @@ const PrimaryForm = ({
         {howItWorks}
       </Title>
       <Form
-        form={intakeForm}
+        form={form}
         layout="vertical"
         style={{ width: "100%", textAlign: "left" }}
         name="contact-info"

@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
       auth: process.env.NOTION_SECRET,
     });
 
-    // Create a new page in the specified Notion database
+    // Create a new page
     const response = await notion.pages.create(payload);
 
     // Return a success response with the created page data

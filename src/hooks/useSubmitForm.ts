@@ -2,14 +2,13 @@ import formatFormEntry, { FormEntry } from "@/helpers/formatFormEntry";
 import { useState, useCallback } from "react";
 
 export interface SubmitFormProps {
-  database_id?: string;
-  data?: FormEntry;
+  database_id: string;
+  data: FormEntry;
 }
 export default function useSubmitForm() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
   const [done, setDone] = useState(false);
-  const [lastAttempt, setLastAttempt] = useState<SubmitFormProps>();
 
   const submitForm = useCallback(
     async ({ data, database_id }: SubmitFormProps) => {
@@ -44,7 +43,6 @@ export default function useSubmitForm() {
       } finally {
         setSending(false);
       }
-      setLastAttempt({ data, database_id });
     },
     []
   );
@@ -54,6 +52,5 @@ export default function useSubmitForm() {
     error,
     done,
     submitForm,
-    retry: () => lastAttempt && submitForm(lastAttempt),
   };
 }
