@@ -27,8 +27,6 @@ const IntakeForm = () => {
     });
   }, []);
 
-  console.log(validTarget);
-
   return (
     <Card style={{ display: "flex", justifyContent: "center" }}>
       <Show

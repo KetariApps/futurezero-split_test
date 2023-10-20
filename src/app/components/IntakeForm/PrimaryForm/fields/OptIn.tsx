@@ -8,7 +8,7 @@ export default function OptIn({ disabled }: { disabled?: boolean }) {
   return (
     <Space style={{ marginBottom: 16 }}>
       <Form.Item name="opt-in" valuePropName="checked" noStyle>
-        <Checkbox disabled={disabled} onChange={(e) => console.log(e)} />
+        <Checkbox disabled={disabled} />
       </Form.Item>
       <Text>{optIn}</Text>
     </Space>

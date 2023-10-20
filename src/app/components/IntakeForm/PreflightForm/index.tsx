@@ -23,8 +23,7 @@ const PreflightForm = ({
   const [homeBuyer, setHomeBuyer] = useState<string>();
 
   useEffect(() => {
-    console.log(homeOwner, homeBuyer);
-    if (homeOwner === undefined || homeBuyer === undefined) return;
+    if (homeOwner === undefined && homeBuyer === undefined) return;
 
     const values = {
       homeOwner:
@@ -44,7 +43,7 @@ const PreflightForm = ({
 
   return (
     <Show
-      when={!homeOwner}
+      when={homeOwner === undefined || homeOwner === "yes"}
       otherwise={
         <Space align="center" direction="vertical">
           <Title level={4} style={{ width: "100%", margin: 0 }}>
