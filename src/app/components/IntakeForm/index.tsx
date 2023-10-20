@@ -12,7 +12,7 @@ import { useForm } from "antd/es/form/Form";
 import { SmileOutlined } from "@ant-design/icons";
 
 const IntakeForm = () => {
-  const [intakeForm] = useForm<FormEntry>();
+  const [intakeForm] = useForm();
   const { sending, error, done, submitForm } = useSubmitForm();
   const [validTarget, setValidTarget] = useState<boolean>();
   const [preflightValues, setPreflightValues] = useState<PreflightValues>();
@@ -42,6 +42,7 @@ const IntakeForm = () => {
                 }}
                 onInvalidTarget={(preflightValues) =>
                   submitFormEntry({
+                    version: document.title,
                     ...preflightValues,
                     ...intakeForm.getFieldsValue(),
                   })
@@ -51,7 +52,11 @@ const IntakeForm = () => {
           >
             <PrimaryForm
               handleSubmit={(primaryValues) =>
-                submitFormEntry({ ...primaryValues, ...preflightValues })
+                submitFormEntry({
+                  version: document.title,
+                  ...primaryValues,
+                  ...preflightValues,
+                })
               }
               form={intakeForm}
             />

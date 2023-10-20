@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 export interface FormEntry {
+  version: string;
   homeOwner: boolean;
   homeBuyer: boolean;
   ["home-address"]: string | undefined;
@@ -18,6 +19,15 @@ export default function formatFormEntry(data: FormEntry) {
         {
           text: {
             content: uuid(),
+          },
+        },
+      ],
+    },
+    version: {
+      rich_text: [
+        {
+          text: {
+            content: data.version,
           },
         },
       ],

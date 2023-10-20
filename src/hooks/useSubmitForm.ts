@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 
 export interface SubmitFormProps {
   database_id: string;
-  data: FormEntry;
+  data: any;
 }
 export default function useSubmitForm() {
   const [sending, setSending] = useState(false);

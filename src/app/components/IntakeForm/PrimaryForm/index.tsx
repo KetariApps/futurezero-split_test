@@ -18,7 +18,7 @@ const PrimaryForm = ({
   handleSubmit,
   form,
 }: {
-  handleSubmit: (values: FormEntry) => void;
+  handleSubmit: (values: any) => void;
   form: FormInstance;
 }) => {
   const { options, setPartialAddress } = useAutocompleteAddress(300);
